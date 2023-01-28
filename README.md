@@ -10,11 +10,11 @@
 ## Note
 Sebelum meng-Run Project Laravel ini, lakukan php artisan migrate:fresh --seed terlebih dahulu untuk melakukan proses migrate database beserta isi datanya. 
 
-Role Admin                                                                                               email : admin@gmail.com                                                                               password : admin123
+Role Admin = email : admin@gmail.com password : admin123
 
-Role Staff                                                                                               email : staff@gmail.com                                                                               password : staff123
+Role Staff = email : staff@gmail.com password : staff123
 
-Role User                                                                                                email : user@gmail.com                                                                                password : user1234
+Role User  = email : user@gmail.com  password : user1234
 
 ## About Laravel
 

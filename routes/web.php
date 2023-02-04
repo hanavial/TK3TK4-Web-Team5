@@ -9,6 +9,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,9 @@ Route::middleware('auth:staff')->group( function(){
     Route::get('/staff/transaksi/show/{id}',[TransaksiController::class,'show'])->name('staff.transaksi.show');
     Route::put('/staff/transaksi/confirm/{id}',[TransaksiController::class,'confirm'])->name('staff.transaksi.confirm');
     Route::put('/staff/transaksi/reject/{id}',[TransaksiController::class,'reject'])->name('staff.transaksi.reject');
+
+    Route::get('/staff/laporan',[LaporanController::class,'index'])->name('staff.laporan.index');
+    Route::get('/staff/laporan/grafik',[LaporanController::class,'grafik'])->name('staff.laporan.grafik');
 });
 
 // Admin
@@ -104,5 +108,8 @@ Route::middleware('auth:admin')->group( function(){
 
     Route::get('/admin/transaksi',[TransaksiController::class,'index'])->name('admin.transaksi.index');
     Route::get('/admin/transaksi/show/{id}',[TransaksiController::class,'show'])->name('admin.transaksi.show');
+
+    Route::get('/admin/laporan',[LaporanController::class,'index'])->name('admin.laporan.index');
+    Route::get('/admin/laporan/grafik',[LaporanController::class,'grafik'])->name('admin.laporan.grafik');
 });
 

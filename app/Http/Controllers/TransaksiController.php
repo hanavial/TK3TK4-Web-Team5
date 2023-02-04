@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\User;
 use App\Models\Transaksi;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -78,11 +79,31 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::findOrFail($id);
 
+        $laporan_by_barangid = Laporan::where('barang_id', $transaksi->barangs->id)->first();
+        $laporan = Laporan::orderBy('id', 'DESC')->get();
+        $row_count = $laporan->count();
+
         $transaksi->update([
             'status' => 'Terkonfirmasi'
         ]);
 
         $transaksi->barangs->where('id', $transaksi->barangs->id)->update(['stock' => ($transaksi->barangs->stock - $transaksi->jumlah)]);
+
+        if($row_count == 0) {
+            Laporan::create([
+                'barang_id' => $transaksi->barangs->id,
+                'jumlah' => $transaksi->jumlah,
+            ]);
+        } elseif ($row_count > 0) {
+            if(!$laporan_by_barangid) {
+                Laporan::create([
+                    'barang_id' => $transaksi->barangs->id,
+                    'jumlah' => $transaksi->jumlah,
+                ]);
+            } else {
+                $laporan_by_barangid->where('barang_id', $transaksi->barangs->id)->update(['jumlah' => ($laporan_by_barangid->jumlah + $transaksi->jumlah)]);
+            }
+        }
 
         return redirect()->route('staff.transaksi.index');
     }

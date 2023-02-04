@@ -31,8 +31,8 @@
                         <td scope="row">{{ $item->nama }}</td>
                         <td>{{ $item->jenis }}</td>
                         <td>{{ $item->stock }}</td>
-                        <td>{{ $item->harga_beli }}</td>
-                        <td>{{ $item->harga_jual }}</td>
+                        <td>Rp. {{ number_format($item->harga_beli) }}</td>
+                        <td>Rp. {{ number_format($item->harga_jual) }}</td>
                         <td>
                             @if (Auth::guard('admin')->check())
                                 <div class="row justify-content-start pl-3">

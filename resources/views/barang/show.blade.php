@@ -46,7 +46,7 @@
                 <div class="col pr-0">
                     <div class="form-group">
                         <label>Harga Beli</label>
-                        <input type="text" name="harga_beli" class="form-control" value="{{ $barang->harga_beli }}" readonly/>
+                        <input type="text" name="harga_beli" class="form-control" value="Rp. {{ number_format($barang->harga_beli) }}" readonly/>
                         @if($errors->has('harga_beli'))
                            {{ $errors->first('harga_beli') }}
                         @endif
@@ -55,7 +55,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Harga Jual</label>
-                        <input type="text" name="harga_jual" class="form-control" value="{{ $barang->harga_jual }}" readonly/>
+                        <input type="text" name="harga_jual" class="form-control" value="Rp. {{ number_format($barang->harga_jual) }}" readonly/>
                         @if($errors->has('harga_jual'))
                            {{ $errors->first('harga_jual') }}
                         @endif
